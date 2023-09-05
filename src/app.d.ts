@@ -9,4 +9,18 @@ declare global {
 	}
 }
 
+import type { AdapterUser } from "@auth/core/adapters";
+
+declare module "@auth/core/types" {
+  interface Session {
+    user?: AdapterUser;
+  }
+}
+
+declare module "@auth/sveltekit/node_modules/@auth/core/types" {
+  interface Session {
+    user?: AdapterUser;
+  }
+}
+
 export {};

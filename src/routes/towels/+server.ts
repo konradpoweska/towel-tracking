@@ -1,10 +1,12 @@
 import { getUserHomesTowels } from "$lib/server/home/service";
-import { getSessionUser } from "$lib/server/users/service";
-import { json } from "@sveltejs/kit";
+import { error, json } from "@sveltejs/kit";
+import { ObjectId } from "mongodb";
 import type { RequestHandler } from "./$types";
 
 export const GET: RequestHandler = async ({ locals }) => {
-  const user = await getSessionUser(await locals.getSession());
-  const towels = await getUserHomesTowels(user._id);
+  const session = await locals.getSession();
+  if (!session?.user?.id) throw error(400);
+  const userId = new ObjectId(session.user.id);
+  const towels = await getUserHomesTowels(userId);
   return json(towels);
 };

@@ -15,6 +15,11 @@ const auth = SvelteKitAuth({
     }),
   ],
   adapter: MongoDBAdapter(clientPromise, { databaseName: env.MONGO_DB }),
+  callbacks: {
+    session: ({ user, session }) => {
+      return { ...session, user };
+    },
+  },
 });
 
 export const i18n: Handle = async ({ event, resolve }) => {
