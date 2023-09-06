@@ -1,7 +1,9 @@
-export interface Towel<Id> {
+import type { ObjectId } from "mongodb";
+
+export interface Towel<Id = ObjectId, D = Date> {
   name: string;
-  usedBy: Id;
-  usedSince: Date;
-  washed?: Date;
-  home: Id,
+  home: Id;
+  user?: Id;
+  usedSince?: D;
+  washed?: D;
 }

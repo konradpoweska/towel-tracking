@@ -1,4 +1,4 @@
 import type { Home } from "$lib/models";
-import { database, type Id } from "../db";
+import { database } from "../db";
 
-export const homes = database.collection<Home<Id>>("homes");
+export const homes = database.collection<Home>("homes");

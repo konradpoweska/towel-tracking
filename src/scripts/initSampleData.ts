@@ -15,14 +15,13 @@ let { _id: userId } = user;
 let home = await homes.insertOne({
   name: "Home 1",
   members: [userId],
-  towels: ["Beżowy"],
 });
 
 let yesterday = new Date();
 yesterday.setDate(yesterday.getDate() - 1);
 
 let towel = await towels.insertOne({
-  usedBy: userId,
+  user: userId,
   name: "Beżowy",
   usedSince: yesterday,
   home: home.insertedId,

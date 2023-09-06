@@ -1,5 +1,6 @@
-export interface Home<Id> {
+import type { ObjectId } from "mongodb";
+
+export interface Home<Id = ObjectId> {
   name: string;
   members: Id[];
-  towels: string[];
 }
