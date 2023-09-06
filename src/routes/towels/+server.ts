@@ -1,4 +1,4 @@
-import { getUserHomesTowels } from "$lib/server/home/service";
+import { getUserHomesTowels } from "$lib/server/home/service/getUserHomesTowels";
 import { error, json } from "@sveltejs/kit";
 import { ObjectId } from "mongodb";
 import type { RequestHandler } from "./$types";

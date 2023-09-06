@@ -1,19 +1,18 @@
 import type { Home, Towel } from "$lib/models";
 import type { WithId } from "$lib/utils";
-import type { Id } from "../db";
-import { homes } from "./model";
+import type { ObjectId } from "mongodb";
+import type { Id } from "../../db";
+import { homes } from "../model";
 
-export type HomeTowels<Id> = Omit<WithId<Id, Home<Id>>, "towels"> & {
-  towels: (Omit<WithId<Id, Towel<Id>>, "usedBy"> & {
-    usedBy: { _id: Id; name: string };
+export type HomeTowels<Id = ObjectId, D = Date> = WithId<Id, Home<Id>> & {
+  towels: (Omit<WithId<Id, Towel<Id, D>>, "user"> & {
+    user?: { _id: Id; name: string };
   })[];
 };
 
-export async function getUserHomesTowels(
-  userId: Id
-): Promise<HomeTowels<Id>[]> {
+export async function getUserHomesTowels(userId: Id): Promise<HomeTowels[]> {
   return homes
-    .aggregate<HomeTowels<Id>>([
+    .aggregate<HomeTowels>([
       {
         $match: {
           $expr: {
@@ -30,18 +29,17 @@ export async function getUserHomesTowels(
             {
               $lookup: {
                 from: "users",
-                localField: "usedBy",
+                localField: "user",
                 foreignField: "_id",
                 pipeline: [{ $project: { name: 1 } }],
-                as: "usedBy",
+                as: "user",
               },
             },
-            { $unwind: "$usedBy" },
+            { $unwind: { path: "$user", preserveNullAndEmptyArrays: true } },
           ],
           as: "towels",
         },
       },
-      { $project: { name: 1, towels: 1 } },
     ])
     .toArray();
 }
