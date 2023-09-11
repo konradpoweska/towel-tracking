@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { HomeTowels } from "$lib/server/home/service/getUserHomesTowels";
   import { AccordionItem } from "carbon-components-svelte";
+  import AvailableTowels from "./AvailableTowels.svelte";
   import Towel from "./Towel.svelte";
 
   export let home: HomeTowels<string, string>;
@@ -26,6 +27,10 @@
 
 <AccordionItem {open}>
   <h3 slot="title">{home.name}</h3>
+  <div>
+    <h4 class="title">Take a towel</h4>
+    <AvailableTowels homeId={home._id} towels={partitionedTowels.unused} />
+  </div>
   <div>
     <h4 class="title">My towels</h4>
     {#each partitionedTowels.my as towel}
