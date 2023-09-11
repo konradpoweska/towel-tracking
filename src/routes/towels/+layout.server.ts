@@ -7,7 +7,11 @@ export const load: ServerLoad = async (event) => {
     throw redirect(307, "/auth/signin");
   }
 
+  const userId = session.user?.id;
+  if (!userId) throw new Error();
+
   return {
     session,
+    userId,
   };
 };
