@@ -40,7 +40,7 @@
     margin-bottom: 5px;
   }
   .towel.selected {
-    outline: #0353e9 solid 2px;
+    outline: "focus" solid 2px;
   }
   .towel.selectable {
     cursor: pointer;
