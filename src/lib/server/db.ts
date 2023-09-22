@@ -1,12 +1,11 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { building } from "$app/environment";
 import { env } from "$env/dynamic/private";
+import { MongoClient, ObjectId } from "mongodb";
 
-if (!env.MONGO_URL) {
-  throw new Error('Missing environment variable: "MONGO_URL"');
-}
-
-const client = new MongoClient(env.MONGO_URL);
+const client = new MongoClient(
+  building ? "mongodb://dummy-host/" : env.MONGO_URL
+);
+export const clientPromise = client.connect();
 
 export const database = client.db(env.MONGO_DB);
-export const clientPromise = client.connect();
 export type Id = ObjectId;
