@@ -32,6 +32,7 @@
 </script>
 
 <script lang="ts">
+  import NewTowel from "./NewTowel.svelte";
   export let home: HomeTowels<string, string>;
   export let userId: string;
   export let open: boolean = false;
@@ -63,7 +64,10 @@
 <AccordionItem {open} class="container">
   <h3 slot="title">{home.name}</h3>
   <section>
-    <h4>Take a towel</h4>
+    <div class="header-button">
+      <h4>Take a towel</h4>
+      <NewTowel homeId={home._id} />
+    </div>
     <AvailableTowels homeId={home._id} towels={partitionedTowels.unused} />
   </section>
   {#if partitionedTowels.my.length}
@@ -117,7 +121,12 @@
   section {
     margin: 2em 0;
   }
-  section > h4 {
+  section h4 {
     margin-bottom: 0.4em;
+  }
+  .header-button {
+    display: flex;
+    gap: 0.6em;
+    align-items: baseline;
   }
 </style>
