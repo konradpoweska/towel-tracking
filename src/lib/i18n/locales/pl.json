@@ -1,3 +1,4 @@
 {
-  "title": "Śledzenie ręczników"
+  "title": "Śledzenie ręczników",
+  "towelAge": "{days, plural, =0 {Nowy} one {# dzień} other {# dni}}"
 }

@@ -1,3 +1,4 @@
 {
-  "title": "Towel Monitoring"
+  "title": "Towel Monitoring",
+  "towelAge": "{days, plural, =0 {New} one {# day} other {# days}}"
 }

@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { HomeTowels } from "$lib/server/home/service/getUserHomesTowels";
   import { Checkbox, Tile } from "carbon-components-svelte";
+  import UsageTime from "./UsageTime.svelte";
 
   export let towel: HomeTowels<string, string>["towels"][number];
   export let showUser = false;
@@ -20,7 +21,7 @@
         <p>{towel.user.name}</p>
       {/if}
       {#if towel.usedSince}
-        <p>Used since {towel.usedSince}</p>
+        <UsageTime usedSince={new Date(towel.usedSince)} />
       {/if}
     </div>
     {#if selectable}
