@@ -1,8 +1,8 @@
 services:
   app:
-    image: konradpoweska/towel-monitoring
+    image: konradpoweska/towel-tracking
     build: .
-    container_name: towel-monitoring
+    container_name: towel-tracking
     ports:
       - 8080:80
     depends_on:
@@ -12,7 +12,7 @@ services:
       PORT: 80
       NODE_ENV: production
       MONGO_URL: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@db/
-      MONGO_DB: towel-monitoring-prd
+      MONGO_DB: towel-tracking-prd
       AUTH_SECRET: ${AUTH_SECRET}
       AUTH_TRUST_HOST: true
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
