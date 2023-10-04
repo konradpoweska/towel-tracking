@@ -8,7 +8,7 @@ export async function generateUser(
 ): Promise<WithId<User>> {
   const user = {
     id: `test_${randomUUID()}`,
-    email: "test@towel-monitoring.com",
+    email: "test@towel-tracking.com",
     name: "John Doe",
     ...data,
   };
