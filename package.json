@@ -16,6 +16,7 @@
 		"@sveltejs/kit": "^1.20.4",
 		"@types/luxon": "^3.3.2",
 		"carbon-components-svelte": "^0.79.0",
+		"carbon-icons-svelte": "^12.3.0",
 		"carbon-preprocess-svelte": "^0.10.0",
 		"luxon": "^3.4.3",
 		"svelte": "^4.0.5",

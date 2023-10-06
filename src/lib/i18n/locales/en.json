@@ -1,4 +1,13 @@
 {
   "title": "Towel Tracking",
-  "towelAge": "{days, plural, =0 {New} one {# day} other {# days}}"
+  "towelAge": "{days, plural, =0 {New} one {# day} other {# days}}",
+  "noTowel": "You currently do not use any towel.",
+  "takingATowel": {
+    "search": "Search",
+    "takeATowel": "Take a towel",
+    "cantFindTowel": "My towel is not on the list",
+    "addTowel": "Add towel",
+    "towelName": "Towel name"
+  },
+  "cancel": "Cancel"
 }

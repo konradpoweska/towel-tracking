@@ -2,7 +2,6 @@
   import { invalidate } from "$app/navigation";
   import type { HomeTowels } from "$lib/server/home/service/getUserHomesTowels";
   import { AccordionItem, Button } from "carbon-components-svelte";
-  import AvailableTowels from "./AvailableTowels.svelte";
   import Towel from "./Towel.svelte";
 
   async function washTowels(towelIds: string[], homeId: string): Promise<void> {
@@ -32,6 +31,9 @@
 </script>
 
 <script lang="ts">
+  import TakeATowel from "$lib/components/TakeATowel/TakeATowel.svelte";
+  import { _ } from "svelte-i18n";
+
   export let home: HomeTowels<string, string>;
   export let userId: string;
   export let open: boolean = false;
@@ -63,21 +65,20 @@
 <AccordionItem {open} class="container">
   <h3 slot="title">{home.name}</h3>
   <section>
-    <h4>Take a towel</h4>
-    <AvailableTowels homeId={home._id} towels={partitionedTowels.unused} />
-  </section>
-  {#if partitionedTowels.my.length}
-    <section>
-      <h4>My towels</h4>
+    <h4>My towels</h4>
+    <div class="towels-container">
       {#each partitionedTowels.my as towel}
         <Towel
           {towel}
           selectable={washingMode}
           bind:selected={towelIsSelected[towel._id]}
         />
+      {:else}
+        {$_("noTowel")}
       {/each}
-    </section>
-  {/if}
+    </div>
+    <TakeATowel homeId={home._id} towels={partitionedTowels.unused} />
+  </section>
   {#if partitionedTowels.others.length}
     <section>
       <h4>Others' towels</h4>
@@ -115,9 +116,13 @@
 
 <style>
   section {
-    margin: 2em 0;
+    margin-top: 1em;
+    margin-bottom: 3em;
   }
-  section > h4 {
-    margin-bottom: 0.4em;
+  section h4 {
+    margin-bottom: 1em;
+  }
+  .towels-container {
+    margin-bottom: 1em;
   }
 </style>

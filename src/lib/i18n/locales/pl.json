@@ -1,4 +1,13 @@
 {
   "title": "Śledzenie ręczników",
-  "towelAge": "{days, plural, =0 {Nowy} one {# dzień} other {# dni}}"
+  "towelAge": "{days, plural, =0 {Nowy} one {# dzień} other {# dni}}",
+  "noTowel": "Nie używasz aktualnie żadnego ręcznika.",
+  "takingATowel": {
+    "search": "Wyszukaj",
+    "takeATowel": "Wziąć ręcznik",
+    "cantFindTowel": "Mojego ręcznika nie ma na liście",
+    "addTowel": "Dodaj ręcznik",
+    "towelName": "Nazwa ręcznika"
+  },
+  "cancel": "Anuluj"
 }
