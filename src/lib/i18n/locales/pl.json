@@ -9,5 +9,9 @@
     "addTowel": "Dodaj ręcznik",
     "towelName": "Nazwa ręcznika"
   },
+  "washing": {
+    "washTowels": "Pranie",
+    "wash": "Wypierz"
+  },
   "cancel": "Anuluj"
 }

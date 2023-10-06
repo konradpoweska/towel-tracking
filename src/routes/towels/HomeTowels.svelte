@@ -32,6 +32,7 @@
 
 <script lang="ts">
   import TakeATowel from "$lib/components/TakeATowel/TakeATowel.svelte";
+  import { RainDrop } from "carbon-icons-svelte";
   import { _ } from "svelte-i18n";
 
   export let home: HomeTowels<string, string>;
@@ -92,29 +93,36 @@
       {/each}
     </section>
   {/if}
-  <section>
+  <section class="actions">
     {#if washingMode}
       <Button
         kind="primary"
-        on:click={() => washSelectedTowels()}
-        disabled={selectedTowelIds.length === 0}>Wash</Button
+        on:click={washSelectedTowels}
+        disabled={selectedTowelIds.length === 0}
       >
+        {$_("washing.wash")}
+      </Button>
       <Button kind="secondary" on:click={() => resetWashingMode()}>
-        Cancel
+        {$_("cancel")}
       </Button>
     {:else}
-      {@const usedTowels =
-        partitionedTowels.my.length + partitionedTowels.others.length}
-      {#if usedTowels}
-        <Button kind="secondary" on:click={() => (washingMode = true)}>
-          Wash towels
-        </Button>
-      {/if}
+      <Button
+        kind="secondary"
+        on:click={() => (washingMode = true)}
+        icon={RainDrop}
+      >
+        {$_("washing.washTowels")}
+      </Button>
     {/if}
   </section>
 </AccordionItem>
 
 <style>
+  .actions {
+    display: flex;
+    gap: 1px;
+    margin-top: 4em;
+  }
   section {
     margin-top: 1em;
     margin-bottom: 3em;

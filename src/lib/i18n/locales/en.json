@@ -9,5 +9,9 @@
     "addTowel": "Add towel",
     "towelName": "Towel name"
   },
+  "washing": {
+    "washTowels": "Wash towels",
+    "wash": "Wash"
+  },
   "cancel": "Cancel"
 }
