@@ -36,6 +36,7 @@ export async function getUserHomesTowels(userId: Id): Promise<HomeTowels[]> {
               },
             },
             { $unwind: { path: "$user", preserveNullAndEmptyArrays: true } },
+            { $sort: { usedSince: -1, washed: -1 } },
           ],
           as: "towels",
         },
