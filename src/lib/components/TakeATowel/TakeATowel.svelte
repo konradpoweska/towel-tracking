@@ -12,13 +12,14 @@
 
   export let homeId: string;
   export let towels: Towel[];
+  export let disabled = false;
 
   let openUseTowelModal: () => void;
   let openAddTowelModal: () => void;
   let useTowelModalIsOpen: boolean;
 </script>
 
-<Button on:click={openUseTowelModal} icon={Add}>{$_("takingATowel.takeATowel")}</Button>
+<Button on:click={openUseTowelModal} icon={Add} {disabled}>{$_("takingATowel.takeATowel")}</Button>
 <UseTowel
   {homeId}
   {towels}

@@ -37,9 +37,6 @@
 </div>
 
 <style>
-  .towel {
-    margin-bottom: 5px;
-  }
   .towel.selected {
     outline: "focus" solid 2px;
   }

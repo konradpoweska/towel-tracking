@@ -2,6 +2,8 @@
   "title": "Towel Tracking",
   "towelAge": "{days, plural, =0 {New} one {# day} other {# days}}",
   "noTowel": "You currently do not use any towel.",
+  "showOthersTowels": "Show others' towels",
+  "hideOthersTowels": "Hide others' towels",
   "takingATowel": {
     "search": "Search",
     "takeATowel": "Take a towel",

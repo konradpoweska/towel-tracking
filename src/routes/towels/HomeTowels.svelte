@@ -32,11 +32,12 @@
 
 <script lang="ts">
   import TakeATowel from "$lib/components/TakeATowel/TakeATowel.svelte";
-  import { RainDrop } from "carbon-icons-svelte";
+  import { ChevronDown, RainDrop } from "carbon-icons-svelte";
   import { _ } from "svelte-i18n";
 
   export let home: HomeTowels<string, string>;
   export let userId: string;
+
   export let open: boolean = false;
 
   $: partitionedTowels = partitionTowels(home.towels, userId);
@@ -61,28 +62,69 @@
     resetWashingMode();
     invalidate("db:towels");
   }
+
+  let showOthersTowels = false;
 </script>
 
-<AccordionItem {open} class="container">
+<AccordionItem bind:open>
   <h3 slot="title">{home.name}</h3>
-  <section>
-    <h4>My towels</h4>
-    <div class="towels-container">
-      {#each partitionedTowels.my as towel}
-        <Towel
-          {towel}
-          selectable={washingMode}
-          bind:selected={towelIsSelected[towel._id]}
-        />
+  <section class="actions">
+    <TakeATowel
+      homeId={home._id}
+      towels={partitionedTowels.unused}
+      disabled={washingMode}
+    />
+    <div>
+      {#if washingMode}
+        <Button
+          kind="primary"
+          on:click={washSelectedTowels}
+          disabled={selectedTowelIds.length === 0}
+        >
+          {$_("washing.wash")}
+        </Button>
+        <Button kind="secondary" on:click={() => resetWashingMode()}>
+          {$_("cancel")}
+        </Button>
       {:else}
-        {$_("noTowel")}
-      {/each}
+        <Button
+          kind="secondary"
+          on:click={() => {
+            washingMode = true;
+            showOthersTowels = true;
+          }}
+          icon={RainDrop}
+        >
+          {$_("washing.washTowels")}
+        </Button>
+      {/if}
     </div>
-    <TakeATowel homeId={home._id} towels={partitionedTowels.unused} />
   </section>
+  <div class="towels-container">
+    {#each partitionedTowels.my as towel}
+      <Towel
+        {towel}
+        selectable={washingMode}
+        bind:selected={towelIsSelected[towel._id]}
+      />
+    {:else}
+      {$_("noTowel")}
+    {/each}
+  </div>
   {#if partitionedTowels.others.length}
-    <section>
-      <h4>Others' towels</h4>
+    <div class="otherTowelsToggle" class:active={showOthersTowels}>
+      <Button
+        on:click={() => (showOthersTowels = !showOthersTowels)}
+        kind="ghost"
+        size="small"
+        icon={ChevronDown}
+      >
+        {$_(showOthersTowels ? "hideOthersTowels" : "showOthersTowels")}
+      </Button>
+    </div>
+  {/if}
+  {#if showOthersTowels}
+    <div class="towels-container">
       {#each partitionedTowels.others as towel}
         <Towel
           {towel}
@@ -91,46 +133,41 @@
           showUser
         />
       {/each}
-    </section>
+    </div>
   {/if}
-  <section class="actions">
-    {#if washingMode}
-      <Button
-        kind="primary"
-        on:click={washSelectedTowels}
-        disabled={selectedTowelIds.length === 0}
-      >
-        {$_("washing.wash")}
-      </Button>
-      <Button kind="secondary" on:click={() => resetWashingMode()}>
-        {$_("cancel")}
-      </Button>
-    {:else}
-      <Button
-        kind="secondary"
-        on:click={() => (washingMode = true)}
-        icon={RainDrop}
-      >
-        {$_("washing.washTowels")}
-      </Button>
-    {/if}
-  </section>
 </AccordionItem>
 
 <style>
   .actions {
     display: flex;
+    margin-top: 0.6em;
+    margin-bottom: 1.6em;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .actions > div {
+    display: flex;
     gap: 1px;
-    margin-top: 4em;
   }
-  section {
-    margin-top: 1em;
-    margin-bottom: 3em;
+  .otherTowelsToggle :global(button) {
+    display: flex;
+    max-width: unset;
+    width: 100%;
+    justify-content: center;
   }
-  section h4 {
-    margin-bottom: 1em;
+  .otherTowelsToggle.active :global(svg) {
+    transform: rotate(180deg);
   }
   .towels-container {
-    margin-bottom: 1em;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 4px;
+    margin: 4px 0;
+  }
+  @media screen and (min-width: 1200px) {
+    .towels-container {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 </style>
