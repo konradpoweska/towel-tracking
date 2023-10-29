@@ -15,5 +15,10 @@
     "washTowels": "Pranie",
     "wash": "Wypierz"
   },
+  "home": {
+    "create_home": "Dodaj dom",
+    "name": "Nazwa domu",
+    "create": "Dodaj"
+  },
   "cancel": "Anuluj"
 }

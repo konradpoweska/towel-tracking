@@ -15,5 +15,10 @@
     "washTowels": "Wash towels",
     "wash": "Wash"
   },
+  "home": {
+    "create_home": "Create a home",
+    "name": "Home name",
+    "create": "Create"
+  },
   "cancel": "Cancel"
 }

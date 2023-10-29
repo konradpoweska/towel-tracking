@@ -1,7 +1,8 @@
-import { objectIdSchema } from "$lib/server/parsing";
-import { error, json } from "@sveltejs/kit";
-import { ObjectId } from "mongodb";
+import { objectIdSchema, safeParse } from "$lib/server/parsing";
+import { getUserId } from "$lib/server/utils";
+import { json } from "@sveltejs/kit";
 import { z } from "zod";
+import { paramsSchema } from "../../paramsSchema";
 import type { RequestHandler } from "./$types";
 import washTowels from "./washTowels";
 
@@ -9,20 +10,11 @@ const bodySchema = z.object({
   towelIds: objectIdSchema.array(),
 });
 
-const paramsSchema = z.object({
-  homeId: objectIdSchema,
-});
-
 export const POST: RequestHandler = async ({ locals, params, request }) => {
-  const paramsParsing = paramsSchema.safeParse(params);
-  if (!paramsParsing.success) throw error(400, paramsParsing.error.message);
-  const { homeId } = paramsParsing.data;
+  const { homeId } = safeParse(paramsSchema, params, 404);
+  const { towelIds } = safeParse(bodySchema, await request.json(), 400);
 
-  const bodyParsing = bodySchema.safeParse(await request.json());
-  if (!bodyParsing.success) throw error(400, bodyParsing.error.message);
-  const { towelIds } = bodyParsing.data;
-
-  const userId = new ObjectId((await locals.getSession())?.user?.id);
+  const userId = await getUserId(locals);
   await washTowels(homeId, userId, towelIds);
   return json({ ok: true });
 };
