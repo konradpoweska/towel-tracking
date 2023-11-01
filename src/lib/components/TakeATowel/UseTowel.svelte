@@ -1,8 +1,6 @@
 <script lang="ts" context="module">
-  import type { HomeTowels } from "$lib/server/home/service/getUserHomesTowels";
   import type { DataTableHeader } from "carbon-components-svelte/types/DataTable/DataTable.svelte";
-
-  type Towel = HomeTowels<string, string>["towels"][number];
+  import type { Towel } from "../../../routes/home/[homeId]/towels/+page";
 
   const headers: DataTableHeader[] = [{ key: "name", value: "Name" }];
 </script>
@@ -37,12 +35,12 @@
   }
 
   async function submit(homeId: string, towelId: string): Promise<void> {
-    const res = await fetch(`api/homes/${homeId}/towels/${towelId}/use`, {
+    const res = await fetch(`/api/homes/${homeId}/towels/${towelId}/use`, {
       method: "POST",
     });
     if (!res.ok) throw new Error(await res.json());
     open = false;
-    invalidate("db:towels");
+    invalidate("towels");
   }
 
   $: rows = towels.map((t) => ({ id: t._id, ...t }));

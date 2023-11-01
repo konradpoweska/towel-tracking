@@ -26,7 +26,7 @@
       body: JSON.stringify({ name: value }),
     });
     if (!res.ok) throw new Error(await res.json());
-    invalidate("db:towels");
+    invalidate("towels");
     open = false;
     dispatch("submit");
   };

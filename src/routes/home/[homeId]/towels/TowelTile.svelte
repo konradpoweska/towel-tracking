@@ -1,12 +1,17 @@
 <script lang="ts">
-  import type { HomeTowels } from "$lib/server/home/service/getUserHomesTowels";
+  import UsageTime from "$lib/components/UsageTime.svelte";
   import { Checkbox, Tile } from "carbon-components-svelte";
-  import UsageTime from "./UsageTime.svelte";
+  import type { Home } from "../+layout";
+  import type { Towel } from "./+page";
 
-  export let towel: HomeTowels<string, string>["towels"][number];
+  export let towel: Towel;
+  export let home: Home;
   export let showUser = false;
   export let selectable = false;
   export let selected = false;
+
+  const getUserName = (userId: string): string =>
+    home.members.find((m) => m._id === userId)?.name ?? "User";
 </script>
 
 <div class="towel" class:selectable class:selected>
@@ -18,7 +23,7 @@
     <div class="main">
       <h5 class="title">{towel.name}</h5>
       {#if showUser && towel.user}
-        <p>{towel.user.name}</p>
+        <p>{getUserName(towel.user)}</p>
       {/if}
       {#if towel.usedSince}
         <UsageTime usedSince={new Date(towel.usedSince)} />

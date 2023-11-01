@@ -1,14 +1,10 @@
-<script lang="ts" context="module">
-  import type { HomeTowels } from "$lib/server/home/service/getUserHomesTowels";
-  type Towel = HomeTowels<string, string>["towels"][number];
-</script>
-
 <script lang="ts">
+  import { Button } from "carbon-components-svelte";
+  import { Add } from "carbon-icons-svelte";
+  import { _ } from "svelte-i18n";
+  import type { Towel } from "../../../routes/home/[homeId]/towels/+page";
   import AddTowel from "./AddTowel.svelte";
   import UseTowel from "./UseTowel.svelte";
-  import { Add } from "carbon-icons-svelte";
-  import { Button } from "carbon-components-svelte";
-  import { _ } from "svelte-i18n";
 
   export let homeId: string;
   export let towels: Towel[];
@@ -19,7 +15,9 @@
   let useTowelModalIsOpen: boolean;
 </script>
 
-<Button on:click={openUseTowelModal} icon={Add} {disabled}>{$_("takingATowel.takeATowel")}</Button>
+<Button on:click={openUseTowelModal} icon={Add} {disabled}>
+  {$_("takingATowel.takeATowel")}
+</Button>
 <UseTowel
   {homeId}
   {towels}

@@ -16,9 +16,11 @@
     "wash": "Wash"
   },
   "home": {
+    "none": "No homes. Please ask your household members for an invite link, or create a home.",
     "create_home": "Create a home",
     "name": "Home name",
-    "create": "Create"
+    "create": "Create",
+    "members": "{members, plural, one {# member} other {# members}}"
   },
   "cancel": "Cancel"
 }

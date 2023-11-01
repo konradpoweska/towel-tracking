@@ -16,9 +16,11 @@
     "wash": "Wypierz"
   },
   "home": {
+    "none": "Brak domu. Zapytaj domowników o link z zaproszeniem do domu lub dodaj dom.",
     "create_home": "Dodaj dom",
     "name": "Nazwa domu",
-    "create": "Dodaj"
+    "create": "Dodaj",
+    "members": "{members, plural, one {# osoba} few {# osoby} other {# osób}}"
   },
   "cancel": "Anuluj"
 }

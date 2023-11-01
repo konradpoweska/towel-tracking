@@ -1,8 +1,7 @@
 <script lang="ts" context="module">
   import { invalidate } from "$app/navigation";
-  import type { HomeTowels } from "$lib/server/home/service/getUserHomesTowels";
-  import { AccordionItem, Button } from "carbon-components-svelte";
-  import Towel from "./Towel.svelte";
+  import { Button } from "carbon-components-svelte";
+  import TowelTile from "./TowelTile.svelte";
 
   async function washTowels(towelIds: string[], homeId: string): Promise<void> {
     const f = await fetch(`/api/homes/${homeId}/towels/wash`, {
@@ -12,14 +11,13 @@
     if (!f.ok) throw new Error();
   }
 
-  type HTowel = HomeTowels<string, string>["towels"][number];
-  type PartitionedTowels = Record<"my" | "others" | "unused", HTowel[]>;
+  type PartitionedTowels = Record<"my" | "others" | "unused", Towel[]>;
 
-  const partitionTowels = (towels: HTowel[], userId: string) =>
+  const partitionTowels = (towels: Towel[], userId: string) =>
     towels.reduce(
       (acc, towel) => {
         (towel.user
-          ? towel.user._id === userId
+          ? towel.user === userId
             ? acc.my
             : acc.others
           : acc.unused
@@ -34,13 +32,14 @@
   import TakeATowel from "$lib/components/TakeATowel/TakeATowel.svelte";
   import { ChevronDown, RainDrop } from "carbon-icons-svelte";
   import { _ } from "svelte-i18n";
+  import type { Home } from "../+layout";
+  import type { Towel } from "./+page";
 
-  export let home: HomeTowels<string, string>;
+  export let home: Home;
+  export let towels: Towel[];
   export let userId: string;
 
-  export let open: boolean = false;
-
-  $: partitionedTowels = partitionTowels(home.towels, userId);
+  $: partitionedTowels = partitionTowels(towels, userId);
 
   let washingMode = false;
   let towelIsSelected: Record<string, boolean> = {};
@@ -57,18 +56,22 @@
     try {
       await washTowels(selectedTowelIds, home._id);
     } catch (err) {
+      // TODO: improve error handling
       console.error(err);
     }
     resetWashingMode();
-    invalidate("db:towels");
+    invalidate("towels");
   }
 
   let showOthersTowels = false;
 </script>
 
-<AccordionItem bind:open>
-  <h3 slot="title">{home.name}</h3>
-  <section class="actions">
+<div>
+  <div class="header">
+    <h3>{home.name}</h3>
+    <small>{$_("home.members", { values: { members: home.members.length } })}</small>
+  </div>
+  <div class="actions">
     <TakeATowel
       homeId={home._id}
       towels={partitionedTowels.unused}
@@ -99,11 +102,12 @@
         </Button>
       {/if}
     </div>
-  </section>
+  </div>
   <div class="towels-container">
     {#each partitionedTowels.my as towel}
-      <Towel
+      <TowelTile
         {towel}
+        {home}
         selectable={washingMode}
         bind:selected={towelIsSelected[towel._id]}
       />
@@ -126,7 +130,8 @@
   {#if showOthersTowels}
     <div class="towels-container">
       {#each partitionedTowels.others as towel}
-        <Towel
+        <TowelTile
+          {home}
           {towel}
           selectable={washingMode}
           bind:selected={towelIsSelected[towel._id]}
@@ -135,13 +140,16 @@
       {/each}
     </div>
   {/if}
-</AccordionItem>
+</div>
 
 <style>
+  .header {
+    margin-bottom: 2em;
+  }
   .actions {
     display: flex;
     margin-top: 0.6em;
-    margin-bottom: 1.6em;
+    margin-bottom: 1.2em;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 5px;

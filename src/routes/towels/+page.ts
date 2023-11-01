@@ -1,9 +1,5 @@
-import type { HomeTowels } from "$lib/server/home/service/getUserHomesTowels";
+import { redirect } from "@sveltejs/kit";
 
-export const load = async ({ depends, fetch }) => {
-  depends("db:towels");
-  const request = await fetch("");
-  const homes: HomeTowels<string, string>[] = await request.json();
-
-  return { homes };
+export const load = () => {
+  throw redirect(301, "/");
 };
