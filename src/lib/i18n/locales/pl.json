@@ -20,6 +20,7 @@
     "create_home": "Dodaj dom",
     "name": "Nazwa domu",
     "create": "Dodaj",
+    "goto": "Przejdź do domu",
     "members": "{members, plural, one {# osoba} few {# osoby} other {# osób}}"
   },
   "cancel": "Anuluj"

@@ -20,6 +20,7 @@
     "create_home": "Create a home",
     "name": "Home name",
     "create": "Create",
+    "goto": "Go to home",
     "members": "{members, plural, one {# member} other {# members}}"
   },
   "cancel": "Cancel"
