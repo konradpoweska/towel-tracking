@@ -36,6 +36,7 @@
             <HeaderPanelLink
               href={`/home/${home._id}/`}
               on:click={closeHomeSelector}
+              data-sveltekit-preload-data="off"
               class={$page.params.homeId === home._id ? "active" : undefined}
             >
               {home.name}

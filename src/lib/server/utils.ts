@@ -1,6 +1,8 @@
 import { error } from "@sveltejs/kit";
 import { ObjectId } from "mongodb";
 
+export const LAST_VIEWED_HOME_COOKIE = "last-viewed-home";
+
 export const getUserId = async (
   locals: App.Locals,
 ): Promise<ObjectId> => {
