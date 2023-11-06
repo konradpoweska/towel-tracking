@@ -7,6 +7,7 @@
 
 <script lang="ts">
   import { invalidate } from "$app/navigation";
+  import { request } from "$lib/request";
   import {
     Button,
     ComposedModal,
@@ -35,10 +36,9 @@
   }
 
   async function submit(homeId: string, towelId: string): Promise<void> {
-    const res = await fetch(`/api/homes/${homeId}/towels/${towelId}/use`, {
+    await request(fetch, `/api/homes/${homeId}/towels/${towelId}/use`, {
       method: "POST",
     });
-    if (!res.ok) throw new Error(await res.json());
     open = false;
     invalidate("towels");
   }

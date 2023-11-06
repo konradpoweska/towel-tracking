@@ -1,5 +1,6 @@
 <script lang="ts" context="module">
   import { invalidate } from "$app/navigation";
+  import { request } from "$lib/request";
   import { Modal, TextInput } from "carbon-components-svelte";
   import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
@@ -21,11 +22,10 @@
   $: valid = value?.length > 1;
 
   const submit = async () => {
-    const res = await fetch(`/api/homes/${homeId}/towels/use`, {
+    await request(fetch, `/api/homes/${homeId}/towels/use`, {
       method: "POST",
       body: JSON.stringify({ name: value }),
     });
-    if (!res.ok) throw new Error(await res.json());
     invalidate("towels");
     open = false;
     dispatch("submit");

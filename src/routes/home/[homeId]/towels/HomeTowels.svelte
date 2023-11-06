@@ -4,11 +4,10 @@
   import TowelTile from "./TowelTile.svelte";
 
   async function washTowels(towelIds: string[], homeId: string): Promise<void> {
-    const f = await fetch(`/api/homes/${homeId}/towels/wash`, {
+    await request(fetch, `/api/homes/${homeId}/towels/wash`, {
       method: "POST",
       body: JSON.stringify({ towelIds }),
     });
-    if (!f.ok) throw new Error();
   }
 
   type PartitionedTowels = Record<"my" | "others" | "unused", Towel[]>;
@@ -30,6 +29,7 @@
 
 <script lang="ts">
   import TakeATowel from "$lib/components/TakeATowel/TakeATowel.svelte";
+  import { request } from "$lib/request";
   import { ChevronDown, RainDrop } from "carbon-icons-svelte";
   import { _ } from "svelte-i18n";
   import type { Home } from "../+layout";

@@ -1,7 +1,10 @@
 import type { Home } from "$lib/models";
-import { handleResponse, type WithId } from "$lib/utils";
+import { request } from "$lib/request";
+import type { WithId } from "$lib/utils";
 import { redirect } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
+
+type Homes = WithId<string, Home<string>>[];
 
 export const load: LayoutServerLoad = async ({ fetch, locals }) => {
   const session = await locals.getSession();
@@ -10,9 +13,7 @@ export const load: LayoutServerLoad = async ({ fetch, locals }) => {
     throw redirect(307, "/auth/signin");
   }
 
-  const homes = fetch("/api/homes").then(
-    handleResponse<WithId<string, Home<string>>[]>,
-  );
+  const homes = await request<Homes>(fetch, "/api/homes");
 
   return { session, homes };
 };
