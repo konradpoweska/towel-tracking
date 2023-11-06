@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import CreateHomeButton from "$lib/components/CreateHomeButton.svelte";
+  import Notifications from "$lib/components/Notifications/Component.svelte";
   import {
     Column,
     Content,
@@ -26,6 +27,7 @@
   <title>{$_("title")}</title>
 </svelte:head>
 
+<Notifications />
 <Header platformName={$_("title")}>
   <HeaderUtilities>
     <HeaderAction bind:isOpen={isOpenHomeSelector} icon={Home}>
