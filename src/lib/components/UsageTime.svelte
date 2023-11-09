@@ -19,7 +19,7 @@
 </script>
 
 <p class:warn class:danger class:fresh>
-  {$_("towelAge", { values: { days } })}
+  {$_("towel.age", { values: { days } })}
 </p>
 
 <style>

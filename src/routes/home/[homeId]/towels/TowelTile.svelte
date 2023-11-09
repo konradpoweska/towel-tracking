@@ -3,6 +3,7 @@
   import { Checkbox, Tile } from "carbon-components-svelte";
   import type { Home } from "../+layout";
   import type { Towel } from "./+page";
+  import { _ } from "svelte-i18n";
 
   export let towel: Towel;
   export let home: Home;
@@ -11,7 +12,7 @@
   export let selected = false;
 
   const getUserName = (userId: string): string =>
-    home.members.find((m) => m._id === userId)?.name ?? "User";
+    home.members.find((m) => m._id === userId)?.name ?? $_("unknown_user");
 </script>
 
 <div class="towel" class:selectable class:selected>

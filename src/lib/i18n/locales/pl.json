@@ -1,17 +1,15 @@
 {
   "title": "Śledzenie ręczników",
-  "towelAge": "{days, plural, =0 {Nowy} one {# dzień} other {# dni}}",
-  "noTowel": "Nie używasz aktualnie żadnego ręcznika.",
-  "showOthersTowels": "Pokaż inne ręczniki",
-  "hideOthersTowels": "Schowaj inne ręczniki",
-  "takingATowel": {
-    "search": "Wyszukaj",
+  "unknown_user": "Nieznany użytkownik",
+  "towel": {
+    "showOthersTowels": "Pokaż inne ręczniki",
+    "hideOthersTowels": "Schowaj inne ręczniki",
+    "none": "Nie używasz aktualnie żadnego ręcznika.",
+    "age": "{days, plural, =0 {Nowy} one {# dzień} other {# dni}}",
     "takeATowel": "Wziąć ręcznik",
     "cantFindTowel": "Mojego ręcznika nie ma na liście",
     "addTowel": "Dodaj ręcznik",
-    "towelName": "Nazwa ręcznika"
-  },
-  "washing": {
+    "towelName": "Nazwa ręcznika",
     "washTowels": "Pranie",
     "wash": "Wypierz"
   },
@@ -21,7 +19,10 @@
     "name": "Nazwa domu",
     "create": "Dodaj",
     "goto": "Przejdź do domu",
-    "members": "{members, plural, one {# osoba} few {# osoby} other {# osób}}"
+    "members": {
+      "count": "{members, plural, one {# osoba} few {# osoby} other {# osób}}"
+    }
   },
+  "search": "Wyszukaj",
   "cancel": "Anuluj"
 }

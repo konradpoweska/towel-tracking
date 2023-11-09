@@ -68,8 +68,8 @@
 
 <div>
   <div class="header">
-    <h3>{home.name}</h3>
-    <small>{$_("home.members", { values: { members: home.members.length } })}</small>
+    <h1>{home.name}</h1>
+    <small>{$_("home.members.count", { values: { members: home.members.length } })}</small>
   </div>
   <div class="actions">
     <TakeATowel
@@ -84,7 +84,7 @@
           on:click={washSelectedTowels}
           disabled={selectedTowelIds.length === 0}
         >
-          {$_("washing.wash")}
+          {$_("towel.wash")}
         </Button>
         <Button kind="secondary" on:click={() => resetWashingMode()}>
           {$_("cancel")}
@@ -98,7 +98,7 @@
           }}
           icon={RainDrop}
         >
-          {$_("washing.washTowels")}
+          {$_("towel.washTowels")}
         </Button>
       {/if}
     </div>
@@ -112,7 +112,7 @@
         bind:selected={towelIsSelected[towel._id]}
       />
     {:else}
-      {$_("noTowel")}
+      {$_("towel.none")}
     {/each}
   </div>
   {#if partitionedTowels.others.length}
@@ -123,7 +123,7 @@
         size="small"
         icon={ChevronDown}
       >
-        {$_(showOthersTowels ? "hideOthersTowels" : "showOthersTowels")}
+        {$_(`towel.${showOthersTowels ? "hideOthersTowels" : "showOthersTowels"}`)}
       </Button>
     </div>
   {/if}

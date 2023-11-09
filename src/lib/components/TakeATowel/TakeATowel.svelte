@@ -16,7 +16,7 @@
 </script>
 
 <Button on:click={openUseTowelModal} icon={Add} {disabled}>
-  {$_("takingATowel.takeATowel")}
+  {$_("towel.takeATowel")}
 </Button>
 <UseTowel
   {homeId}

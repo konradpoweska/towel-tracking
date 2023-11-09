@@ -1,17 +1,15 @@
 {
   "title": "Towel Tracking",
-  "towelAge": "{days, plural, =0 {New} one {# day} other {# days}}",
-  "noTowel": "You currently do not use any towel.",
-  "showOthersTowels": "Show others' towels",
-  "hideOthersTowels": "Hide others' towels",
-  "takingATowel": {
-    "search": "Search",
+  "unknown_user": "Unknown user",
+  "towel": {
+    "showOthersTowels": "Show others' towels",
+    "hideOthersTowels": "Hide others' towels",
+    "none": "You currently do not use any towel.",
+    "age": "{days, plural, =0 {New} one {# day} other {# days}}",
     "takeATowel": "Take a towel",
     "cantFindTowel": "My towel is not on the list",
     "addTowel": "Add towel",
-    "towelName": "Towel name"
-  },
-  "washing": {
+    "towelName": "Towel name",
     "washTowels": "Wash towels",
     "wash": "Wash"
   },
@@ -21,7 +19,10 @@
     "name": "Home name",
     "create": "Create",
     "goto": "Go to home",
-    "members": "{members, plural, one {# member} other {# members}}"
+    "members": {
+      "count": "{members, plural, one {# member} other {# members}}"
+    }
   },
+  "search": "Search",
   "cancel": "Cancel"
 }

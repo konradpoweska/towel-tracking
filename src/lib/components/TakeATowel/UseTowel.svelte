@@ -52,7 +52,7 @@
     on:close={() => (open = false)}
     selectorPrimaryFocus="input"
   >
-    <ModalHeader title={$_("takingATowel.takeATowel")} />
+    <ModalHeader title={$_("towel.takeATowel")} />
     <ModalBody hasScrollingContent>
       <DataTable
         {headers}
@@ -66,7 +66,7 @@
             <ToolbarSearch
               bind:value={search}
               shouldFilterRows
-              placeholder={$_("takingATowel.search")}
+              placeholder={$_("search")}
               persistent
             />
           </ToolbarContent>
@@ -75,7 +75,7 @@
     </ModalBody>
     <ModalFooter>
       <Button on:click={() => dispatch("cantFindTowel")} kind="ghost">
-        {$_("takingATowel.cantFindTowel")}
+        {$_("towel.cantFindTowel")}
       </Button>
     </ModalFooter>
   </ComposedModal>

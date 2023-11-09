@@ -34,13 +34,13 @@
 
 <Modal
   bind:open
-  modalHeading={$_("takingATowel.addTowel")}
-  primaryButtonText={$_("takingATowel.addTowel")}
+  modalHeading={$_("towel.addTowel")}
+  primaryButtonText={$_("towel.addTowel")}
   secondaryButtonText={$_("cancel")}
   selectorPrimaryFocus="input"
   primaryButtonDisabled={!valid}
   on:click:button--secondary={() => (open = false)}
   on:submit={submit}
 >
-  <TextInput bind:value labelText={$_("takingATowel.towelName")} />
+  <TextInput bind:value labelText={$_("towel.towelName")} />
 </Modal>
