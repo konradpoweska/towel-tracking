@@ -22,9 +22,9 @@
   $: valid = value?.length > 1;
 
   const submit = async () => {
-    await request(fetch, `/api/homes/${homeId}/towels/use`, {
+    await request(fetch, `/api/homes/${homeId}/towels`, {
       method: "POST",
-      body: JSON.stringify({ name: value }),
+      body: JSON.stringify({ name: value, use: true }),
     });
     invalidate("towels");
     open = false;

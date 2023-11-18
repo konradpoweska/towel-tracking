@@ -3,7 +3,7 @@
   import { _ } from "svelte-i18n";
 </script>
 
-<h2>{$_("home.create_home")}</h2>
+<h2>{$_("home.createHome")}</h2>
 <Form method="POST">
   <FormGroup>
     <TextInput labelText={$_("home.name")} name="name" minlength={4} />

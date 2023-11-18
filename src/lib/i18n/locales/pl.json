@@ -1,28 +1,65 @@
 {
   "title": "Śledzenie ręczników",
-  "unknown_user": "Nieznany użytkownik",
+  "unknownUser": "Nieznany użytkownik",
   "towel": {
+    "header": "Ręczniki",
     "showOthersTowels": "Pokaż inne ręczniki",
     "hideOthersTowels": "Schowaj inne ręczniki",
-    "none": "Nie używasz aktualnie żadnego ręcznika.",
+    "none": "Żaden ręcznik nie został jescze dodany.",
+    "noneUsed": "Nie używasz aktualnie żadnego ręcznika.",
     "age": "{days, plural, =0 {Nowy} one {# dzień} other {# dni}}",
     "takeATowel": "Wziąć ręcznik",
     "cantFindTowel": "Mojego ręcznika nie ma na liście",
     "addTowel": "Dodaj ręcznik",
     "towelName": "Nazwa ręcznika",
     "washTowels": "Pranie",
-    "wash": "Wypierz"
+    "wash": "Wypierz",
+    "delete": {
+      "header": "Usuń ręcznik",
+      "info": "Czy na pewno chcesz usunąć ręcznik <strong>{towel}</strong>?",
+      "success": "Ręcznik usunięty."
+    }
   },
   "home": {
-    "none": "Brak domu. Zapytaj domowników o link z zaproszeniem do domu lub dodaj dom.",
-    "create_home": "Dodaj dom",
+    "none": {
+      "header": "Brak domu",
+      "info": "Zapytaj domowników o link z zaproszeniem do domu lub dodaj dom."
+    },
+    "createHome": "Dodaj dom",
     "name": "Nazwa domu",
     "create": "Dodaj",
+    "settings": "Ustawienia domu",
     "goto": "Przejdź do domu",
+    "leave": {
+      "header": "Opuść dom",
+      "info": "Czy na pewno chcesz opuścić <strong>{home}</strong>?<br />Potrzebne będzie zaproszenie aby dołączyć ponownie.",
+      "success": "Opuszczono dom."
+    },
+    "delete": {
+      "header": "Usuń dom",
+      "info": "Czy na pewno chcesz usunąć <strong>{home}</strong>?<br />Dom i ręczniki zostaną nieodwracalnie usunięte.",
+      "success": "Usunięto dom."
+    },
     "members": {
-      "count": "{members, plural, one {# osoba} few {# osoby} other {# osób}}"
+      "header": "Członkowie",
+      "count": "{members, plural, one {# osoba} few {# osoby} other {# osób}}",
+      "remove": {
+        "header": "Usuń członka",
+        "info": "<strong>{member}</strong> zostanie usunięty/a z domu <strong>{home}</strong>.<br />",
+        "success": "Użytkownik usunięty"
+      },
+      "invite": {
+        "header": "Zaproś do domu",
+        "link": "Link z zaproszeniem",
+        "info": "Udostępnij ten link osobie aby mogła dołączyć do tego domu."
+      }
     }
   },
   "search": "Wyszukaj",
+  "share": "Udostępnij",
+  "copy": "Kopiuj",
+  "copied": "Skopiowano!",
+  "remove": "Usuń",
+  "delete": "Usuń",
   "cancel": "Anuluj"
 }

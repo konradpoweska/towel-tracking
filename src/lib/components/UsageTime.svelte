@@ -18,9 +18,9 @@
   $: warn = !danger && days >= WARN_THRESHOLD;
 </script>
 
-<p class:warn class:danger class:fresh>
+<div class:warn class:danger class:fresh>
   {$_("towel.age", { values: { days } })}
-</p>
+</div>
 
 <style>
   .fresh {

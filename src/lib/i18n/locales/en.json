@@ -1,28 +1,65 @@
 {
   "title": "Towel Tracking",
-  "unknown_user": "Unknown user",
+  "unknownUser": "Unknown user",
   "towel": {
+    "header": "Towels",
     "showOthersTowels": "Show others' towels",
     "hideOthersTowels": "Hide others' towels",
-    "none": "You currently do not use any towel.",
+    "none": "No towel has been added yet.",
+    "noneUsed": "You currently do not use any towel.",
     "age": "{days, plural, =0 {New} one {# day} other {# days}}",
     "takeATowel": "Take a towel",
     "cantFindTowel": "My towel is not on the list",
     "addTowel": "Add towel",
     "towelName": "Towel name",
     "washTowels": "Wash towels",
-    "wash": "Wash"
+    "wash": "Wash",
+    "delete": {
+      "header": "Delete towel",
+      "info": "Are you sure to delete towel <strong>{towel}</strong>?",
+      "success": "Towel deleted."
+    }
   },
   "home": {
-    "none": "No homes. Please ask your household members for an invite link, or create a home.",
-    "create_home": "Create a home",
+    "none": {
+      "header": "No homes",
+      "info": "Please ask your household members for an invite link, or create a home."
+    },
+    "createHome": "Create a home",
     "name": "Home name",
     "create": "Create",
+    "settings": "Home settings",
     "goto": "Go to home",
+    "leave": {
+      "header": "Leave home",
+      "info": "Are you sure you want to leave <strong>{home}</strong>?<br />You will need an invite link to join again.",
+      "success": "Home left."
+    },
+    "delete": {
+      "header": "Delete home",
+      "info": "Are you sure you want to delete <strong>{home}</strong>?<br />The home and its towels will be irreversibly deleted.",
+      "success": "Home deleted."
+    },
     "members": {
-      "count": "{members, plural, one {# member} other {# members}}"
+      "header": "Members",
+      "count": "{members, plural, one {# member} other {# members}}",
+      "remove": {
+        "header": "Remove member",
+        "info": "Are you sure to remove <strong>{member}</strong> from <strong>{home}</strong>?<br />The user will need an invite link to join again.",
+        "success": "Member removed."
+      },
+      "invite": {
+        "header": "Invite other members",
+        "link": "Invite link",
+        "info": "Sharing this link with people will enable them to join this home."
+      }
     }
   },
   "search": "Search",
+  "share": "Share",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "remove": "Remove",
+  "delete": "Delete",
   "cancel": "Cancel"
 }

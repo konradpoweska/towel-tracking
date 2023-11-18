@@ -1,6 +1,5 @@
 <script lang="ts" context="module">
   import type { DataTableHeader } from "carbon-components-svelte/types/DataTable/DataTable.svelte";
-  import type { Towel } from "../../../routes/home/[homeId]/towels/+page";
 
   const headers: DataTableHeader[] = [{ key: "name", value: "Name" }];
 </script>
@@ -21,6 +20,7 @@
   } from "carbon-components-svelte";
   import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
+  import type { Towel } from "../../../routes/api/homes/[homeId]/towels/+server";
 
   export let homeId: string;
   export let towels: Towel[];

@@ -1,12 +1,8 @@
-import { objectIdSchema, safeParse } from "$lib/server/parsing";
+import { safeParse } from "$lib/server/parsing";
 import { getUserId } from "$lib/server/utils";
-import { paramsSchema as paramsSchemaBase } from "../../../paramsSchema";
+import paramsSchema from "../paramsSchema";
 import type { RequestHandler } from "./$types";
 import useTowel from "./useTowel";
-
-const paramsSchema = paramsSchemaBase.extend({
-  towelId: objectIdSchema,
-});
 
 export const POST: RequestHandler = async ({ params, locals }) => {
   const { towelId, homeId } = safeParse(paramsSchema, params, 404);

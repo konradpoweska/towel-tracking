@@ -30,7 +30,7 @@
 <script lang="ts">
   import TakeATowel from "$lib/components/TakeATowel/TakeATowel.svelte";
   import { request } from "$lib/request";
-  import { ChevronDown, RainDrop } from "carbon-icons-svelte";
+  import { ChevronDown, RainDrop, Settings } from "carbon-icons-svelte";
   import { _ } from "svelte-i18n";
   import type { Home } from "../+layout";
   import type { Towel } from "./+page";
@@ -68,8 +68,18 @@
 
 <div>
   <div class="header">
-    <h1>{home.name}</h1>
-    <small>{$_("home.members.count", { values: { members: home.members.length } })}</small>
+    <h1>
+      {home.name}
+      <Button
+        kind="ghost"
+        icon={Settings}
+        href="./settings"
+        iconDescription={$_("home.settings")}
+      />
+    </h1>
+    <small>
+      {$_("home.members.count", { values: { members: home.members.length } })}
+    </small>
   </div>
   <div class="actions">
     <TakeATowel
@@ -112,7 +122,7 @@
         bind:selected={towelIsSelected[towel._id]}
       />
     {:else}
-      {$_("towel.none")}
+      {$_("towel.noneUsed")}
     {/each}
   </div>
   {#if partitionedTowels.others.length}
@@ -123,7 +133,9 @@
         size="small"
         icon={ChevronDown}
       >
-        {$_(`towel.${showOthersTowels ? "hideOthersTowels" : "showOthersTowels"}`)}
+        {$_(
+          `towel.${showOthersTowels ? "hideOthersTowels" : "showOthersTowels"}`
+        )}
       </Button>
     </div>
   {/if}

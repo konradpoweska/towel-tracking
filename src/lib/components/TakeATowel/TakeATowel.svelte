@@ -2,7 +2,7 @@
   import { Button } from "carbon-components-svelte";
   import { Add } from "carbon-icons-svelte";
   import { _ } from "svelte-i18n";
-  import type { Towel } from "../../../routes/home/[homeId]/towels/+page";
+  import type { Towel } from "../../../routes/api/homes/[homeId]/towels/+server";
   import AddTowel from "./AddTowel.svelte";
   import UseTowel from "./UseTowel.svelte";
 
