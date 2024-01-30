@@ -38,7 +38,6 @@
   on:submit={async () => {
     await deleteTowel(homeId, towel._id);
     addNotification({ kind: "success", title: $_("towel.delete.success") });
-    invalidate("home");
     isOpen = false;
   }}
 >

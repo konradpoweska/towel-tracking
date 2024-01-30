@@ -1,8 +1,12 @@
 <script context="module" lang="ts">
-  const leaveHome = (homeId: string) =>
-    request(fetch, `/api/homes/${homeId}`, {
+  import { goto, invalidate } from "$app/navigation";
+
+  const leaveHome = async (homeId: string) => {
+    await request(fetch, `/api/homes/${homeId}`, {
       method: "DELETE",
     });
+    invalidate("homes");
+  };
 </script>
 
 <script lang="ts">
@@ -10,7 +14,6 @@
   import { _ } from "svelte-i18n";
   import type { Home } from "../+layout";
   import { request } from "$lib/request";
-  import { goto } from "$app/navigation";
   import { addNotification } from "$lib/components/Notifications/store";
   import { Exit, Delete } from "carbon-icons-svelte";
 
