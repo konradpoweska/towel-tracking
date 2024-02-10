@@ -4,6 +4,7 @@
   import { Modal, TextInput } from "carbon-components-svelte";
   import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
+  import { addNotification } from "../Notifications/store";
 </script>
 
 <script lang="ts">
@@ -29,13 +30,14 @@
     invalidate("towels");
     open = false;
     dispatch("submit");
+    addNotification({ kind: 'success', title: $_("towel.addTowel.success") });
   };
 </script>
 
 <Modal
   bind:open
-  modalHeading={$_("towel.addTowel")}
-  primaryButtonText={$_("towel.addTowel")}
+  modalHeading={$_("towel.addTowel.header")}
+  primaryButtonText={$_("towel.addTowel.header")}
   secondaryButtonText={$_("cancel")}
   selectorPrimaryFocus="input"
   primaryButtonDisabled={!valid}

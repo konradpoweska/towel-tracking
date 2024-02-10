@@ -21,6 +21,7 @@
   import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
   import type { Towel } from "../../../routes/api/homes/[homeId]/towels/+server";
+  import { addNotification } from "../Notifications/store";
 
   export let homeId: string;
   export let towels: Towel[];
@@ -41,6 +42,7 @@
     });
     open = false;
     invalidate("towels");
+    addNotification({ kind: 'success', title: $_("towel.takeATowel.success") });
   }
 
   $: rows = towels.map((t) => ({ id: t._id, ...t }));
@@ -52,7 +54,7 @@
     on:close={() => (open = false)}
     selectorPrimaryFocus="input"
   >
-    <ModalHeader title={$_("towel.takeATowel")} />
+    <ModalHeader title={$_("towel.takeATowel.header")} />
     <ModalBody hasScrollingContent>
       <DataTable
         {headers}

@@ -8,9 +8,15 @@
     "none": "Żaden ręcznik nie został jescze dodany.",
     "noneUsed": "Nie używasz aktualnie żadnego ręcznika.",
     "age": "{days, plural, =0 {Nowy} one {# dzień} other {# dni}}",
-    "takeATowel": "Wziąć ręcznik",
+    "takeATowel": {
+      "header": "Wziąć ręcznik",
+      "success": "Ręcznik wzięto."
+    },
     "cantFindTowel": "Mojego ręcznika nie ma na liście",
-    "addTowel": "Dodaj ręcznik",
+    "addTowel": {
+      "header": "Dodaj ręcznik",
+      "success": "Ręcznik dodano."
+    },
     "towelName": "Nazwa ręcznika",
     "washTowels": "Pranie",
     "wash": "Wypierz",

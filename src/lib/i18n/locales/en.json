@@ -8,9 +8,15 @@
     "none": "No towel has been added yet.",
     "noneUsed": "You currently do not use any towel.",
     "age": "{days, plural, =0 {New} one {# day} other {# days}}",
-    "takeATowel": "Take a towel",
+    "takeATowel": {
+      "header": "Take a towel",
+      "success": "Towel marked as used."
+    },
     "cantFindTowel": "My towel is not on the list",
-    "addTowel": "Add towel",
+    "addTowel": {
+      "header": "Add towel",
+      "success": "Towel added."
+    },
     "towelName": "Towel name",
     "washTowels": "Wash towels",
     "wash": "Wash",
