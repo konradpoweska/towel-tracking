@@ -10,11 +10,14 @@ const lazy = <T>(init: () => T) => {
   return () => a ?? (a = init());
 };
 
+const getSigningSecret = (): string | undefined =>
+  env.NODE_ENV === "test" ? "test" : env.SIGNING_SECRET;
+
 // Lazy init avoids requiring the secret when building in Docker
 const key = lazy(() =>
   crypto.subtle.importKey(
     "raw",
-    textEncoder.encode(env.SIGNING_SECRET),
+    textEncoder.encode(getSigningSecret()),
     { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign", "verify"],
